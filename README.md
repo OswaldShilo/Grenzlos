@@ -1,65 +1,79 @@
-# VisaVerse 🌍
 
-**An interactive 3D visa requirements visualizer that helps travelers explore global travel freedom.**
+# Grenzlos 🌍
 
-Select your passport and instantly see color-coded visa requirements for every country on a dynamic 3D globe. Hover for detailed travel information and flight options - making travel planning intuitive and engaging.
+Grenzlos is an API that helps you check visa requirements between countries.
 
-## ✨ Features
+## Request Body
+```json
+{
+  "passport": "AFG",
+  "destination": "ALB"
+}
+```
 
-- 🌐 **Interactive 3D Globe** - Rotate and explore countries worldwide
-- 📍 **Real-time Country Info** - Hover to see visa requirements, population, capital, currency, and language
-- 🛂 **Dynamic Passport Selection** - Choose from 195+ countries and see personalized visa requirements
-- 🎨 **Color-coded Visualization** - Instant visual feedback for visa-free, visa-on-arrival, eVisa, and visa-required countries
-- 📱 **Responsive Design** - Optimized for desktop, tablet, and mobile devices
-- ✈️ **Flight Integration** - Direct links to flight search for travel planning
+- **passport** → The ISO Alpha-3 code of the passport country (e.g., `AFG` for Afghanistan).
+- **destination** → The ISO Alpha-3 code of the destination country (e.g., `ALB` for Albania).
 
-## 🚀 Live Demo
+## Response Example
+```json
+{
+  "passport": "AFG",
+  "destination": "ALB",
+  "visa_required": true,
+  "visa_type": "Visa on Arrival",
+  "stay_duration": "30 days"
+}
+```
 
-[Visit VisaVerse](https://vissaverse.com/)
+## Installation & Setup
 
-## 🛠️ Tech Stack
+### 1. Clone the Repository
+```bash
+git clone https://github.com/OswaldShilo/Grenzlos.git
+cd Grenzlos
+```
 
-- **Frontend:** React, JavaScript (ES6+)
-- **3D Graphics:** Three.js, react-globe.gl, react-three-fiber
-- **Build Tool:** Vite
-- **Styling:** CSS3 (Custom styling with modern design principles)
-- **APIs:** REST Countries API, BigDataCloud Reverse Geocoding
+### 2. Create & Activate Virtual Environment
+```bash
+python -m venv venv
+source venv/bin/activate   # Mac/Linux
+venv\Scripts\activate      # Windows
+```
 
-## 📊 Data Sources & Resources
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-### APIs Used
+### 4. Run the Application
+```bash
+uvicorn main:app --reload
+```
 
-- **[REST Countries API](https://restcountries.com/)** - Country information, flags, currencies, languages, and capitals
-- **[BigDataCloud Reverse Geocoding API](https://www.bigdatacloud.com/)** - User location detection for automatic passport selection
-- **[Passport Index Matrix](https://github.com/ilyankou/passport-index-dataset)** - Comprehensive visa requirements data
+### 5. Test the API
+Open browser or use Postman/cURL:
 
-## 🤝 Contributing
+```
+http://127.0.0.1:8000/docs
+```
 
-Contributions are welcome! Here's how you can help:
+## Deployment
 
-1. **Fork the repository**
-2. **Create your feature branch** (`git checkout -b feature/AmazingFeature`)
-3. **Commit your changes** (`git commit -m 'Add some AmazingFeature'`)
-4. **Push to the branch** (`git push origin feature/AmazingFeature`)
-5. **Open a Pull Request**
+### Render (recommended)
+1. Push your code to GitHub (Grenzlos repo).
+2. Go to [Render](https://render.com).
+3. Create a new Web Service.
+4. Connect your GitHub repository.
+5. Choose environment:
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port 10000`
+6. Deploy.
 
-### Ideas for Contributions
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss your ideas.
 
-- 🔄 Add real-time visa requirement updates
-- 🏛️ Include embassy/consulate information
-- 🗓️ Add visa processing time estimates
-- 🌡️ Weather information for destinations
-- 💱 Currency exchange rates
-- 🏨 Integration with booking platforms
+## License
+This project is licensed under the MIT License.
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📧 Contact
-
-Created by [@ThekareemOne](https://github.com/ThekareemOne)
-
----
-
-⭐ If you find this project helpful, please give it a star on GitHub!
+```
+Copyright (c) 2023 Oswald Shilo
