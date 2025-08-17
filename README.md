@@ -1,5 +1,5 @@
 
-# Grenzlos 🌍
+# Grenzlos 🌍 - Inya.ai
 
 Grenzlos is an API that helps you check visa requirements between countries.
 
@@ -58,6 +58,7 @@ http://127.0.0.1:8000/docs
 ```
 
 ## Deployment
+https://grenzlos-oswald-shilos-projects.vercel.app/
 
 ### Render (recommended)
 1. Push your code to GitHub (Grenzlos repo).
