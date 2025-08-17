@@ -72,6 +72,14 @@ http://127.0.0.1:8000/docs
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss your ideas.
 
+📧 Credits
+
+Original Creator: @ThekareemOne
+
+Extended by: Grenzlos (Inya.ai Project)
+
+⭐ If you find this useful, please star both repos!
+
 ## License
 This project is licensed under the MIT License.
 
