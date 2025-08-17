@@ -1,0 +1,521 @@
+/* GLOBAL STYLES */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#root {
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.app-container {
+  position: relative;
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+canvas {
+  cursor: default !important;
+}
+
+canvas.pin-cursor {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>')
+      12 12,
+    auto !important;
+}
+
+.country-card {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: default !important;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  color: white;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  min-width: 250px;
+  transition: all 0.3s ease;
+  animation: slideIn 0.5s ease-out;
+}
+
+.country-card:hover {
+  background: rgba(15, 23, 42, 0.98);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.country-card h3 {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  color: #00ff00;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 8px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-header h3 {
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 8px;
+  flex: 1;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #fff;
+
+  font-size: 24px;
+  cursor: pointer !important;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  margin-left: 12px;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ff6b6b;
+  transform: scale(1.1);
+}
+
+.close-button:active {
+  transform: scale(0.95);
+}
+
+.country-info p {
+  margin: 8px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.country-info strong {
+  color: #ccc;
+}
+
+.country-card {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.flight-link {
+  background: linear-gradient(
+    to right,
+    #ffd700 20%,
+    #adff2f 40%,
+    #7cfc00 60%,
+    #adff2f 80%,
+    #ffd700 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  background-size: 500% auto;
+  animation: textShine 5s ease-in-out infinite alternate;
+}
+
+.passport-selector {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  cursor: default !important;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  min-width: 280px;
+  transition: all 0.3s ease;
+}
+
+.passport-selector:hover {
+  background: rgba(15, 23, 42, 0.98);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.passport-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #e2e8f0;
+  letter-spacing: 0.5px;
+}
+
+.passport-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: #f1f5f9;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+.passport-select:hover {
+  border-color: #00ff00;
+  background: linear-gradient(135deg, #334155 0%, #475569 100%);
+  box-shadow: 0 0 0 3px rgba(0, 255, 0, 0.1);
+}
+
+.passport-select:focus {
+  outline: none;
+  border-color: #00ff00;
+  box-shadow: 0 0 0 3px rgba(0, 255, 0, 0.2);
+  background: linear-gradient(135deg, #334155 0%, #475569 100%);
+}
+
+.passport-select option {
+  background: #1e293b;
+  color: #f1f5f9;
+  padding: 12px;
+  font-size: 14px;
+}
+
+.passport-select option:hover {
+  background: #334155;
+}
+
+/* Custom scrollbar for dropdown */
+.passport-select::-webkit-scrollbar {
+  width: 6px;
+}
+
+.passport-select::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+.passport-select::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+
+.passport-select::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Animation for when component loads */
+.passport-selector {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* FONTS */
+
+.russo-one-regular {
+  font-family: "Russo One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hind-madurai-light {
+  font-family: "Hind Madurai", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.hind-madurai-regular {
+  font-family: "Hind Madurai", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hind-madurai-medium {
+  font-family: "Hind Madurai", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.hind-madurai-semibold {
+  font-family: "Hind Madurai", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.hind-madurai-bold {
+  font-family: "Hind Madurai", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Mobile Devices (Portrait) */
+@media (max-width: 768px) {
+  .country-card {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    width: 100vw !important;
+    min-width: unset;
+    max-height: 40vh;
+    overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+    margin: 0;
+    padding: 16px 20px;
+    z-index: 1001;
+  }
+
+  .card-header {
+    margin-bottom: 8px;
+  }
+
+  .card-header h3 {
+    font-size: 16px;
+  }
+
+  .country-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .country-info p {
+    font-size: 13px;
+    margin: 4px 0;
+  }
+
+  .flight-link {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  .passport-selector {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    min-width: 200px;
+    padding: 12px;
+    transform: scale(0.9);
+    transform-origin: top right;
+  }
+
+  .passport-label {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .passport-select {
+    font-size: 12px;
+    padding: 8px 12px;
+    padding-right: 32px;
+  }
+}
+
+/* Tablet Devices */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .country-card {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    top: auto;
+    width: calc(100vw - 40px) !important;
+    min-width: unset;
+    max-height: 30vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-header h3 {
+    font-size: 17px;
+  }
+
+  .country-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .country-info p {
+    font-size: 14px;
+    margin: 6px 0;
+  }
+
+  .flight-link {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .passport-selector {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    min-width: 220px;
+    padding: 14px;
+    transform: scale(0.95);
+    transform-origin: top right;
+  }
+}
+
+/* Large Mobile Landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+  .country-card {
+    max-height: 50vh;
+    padding: 12px 16px;
+  }
+
+  .passport-selector {
+    transform: scale(0.8);
+    min-width: 180px;
+    padding: 10px;
+  }
+
+  .passport-label {
+    font-size: 11px;
+  }
+
+  .passport-select {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+}
+
+/* Touch Improvements */
+@media (hover: none) and (pointer: coarse) {
+  .close-button {
+    min-width: 40px;
+    height: 40px;
+    font-size: 28px;
+  }
+
+  .passport-select {
+    padding: 14px 16px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .country-card {
+    touch-action: pan-y;
+  }
+}
+
+/* Small Mobile (iPhone SE, etc.) */
+@media (max-width: 480px) {
+  .passport-selector {
+    transform: scale(0.75);
+    min-width: 160px;
+    padding: 8px;
+    top: 5px;
+    right: 5px;
+  }
+
+  .country-card {
+    padding: 14px 16px;
+    max-height: 45vh;
+  }
+
+  .card-header h3 {
+    font-size: 15px;
+  }
+
+  .country-info p {
+    font-size: 12px;
+  }
+}
+
+/* Very Small Mobile */
+@media (max-width: 360px) {
+  .passport-selector {
+    transform: scale(0.7);
+    min-width: 140px;
+  }
+
+  .country-card {
+    padding: 12px 14px;
+  }
+}
